@@ -1,6 +1,9 @@
-import React from 'react'
+import { lazy } from 'react'
 
 import RouteData from 'types/RouteData'
+
+const HomePage = lazy(() => import('../scenes/HomePage'))
+const MoviesPage = lazy(() => import('../scenes/MoviesPage'))
 
 const routes: Array<RouteData> = [
   {
@@ -8,13 +11,13 @@ const routes: Array<RouteData> = [
     path: '/',
     key: 'ROOT',
     exact: true,
-    component: () => <h1>Home Page</h1>,
+    component: HomePage,
   },
   {
     title: 'Daftar Film',
     path: '/movies',
     key: 'MOVIES',
-    component: () => <h1>MOVIES</h1>,
+    component: MoviesPage,
   },
 ]
 

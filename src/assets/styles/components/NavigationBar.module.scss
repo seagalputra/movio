@@ -1,8 +1,8 @@
 .navigationMenu {
-  background-color: #333;
+  background-color: #000;
   display: flex;
   align-items: center;
-  padding: 21px 8px;
+  padding: 12px 8px;
 
   ul {
     width: 100%;
@@ -11,11 +11,11 @@
     padding: 0;
     flex-direction: row;
     list-style-type: none;
+    justify-content: flex-end;
   }
 
   a {
     font-family: 'Open Sans', sans-serif;
-    font-size: 0.95em;
     text-decoration: none;
     color: white;
     padding: 0 12px;
@@ -27,9 +27,10 @@
 }
 
 .logo {
-  width: 100px;
-  text-align: center;
   font-weight: bold;
   font-family: 'Open Sans', sans-serif;
   color: white;
+  margin: 0;
+  font-size: 1.2em;
+  padding-left: 12px;
 }
