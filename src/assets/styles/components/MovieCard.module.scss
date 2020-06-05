@@ -1,0 +1,35 @@
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  max-height: auto;
+  overflow: hidden;
+}
+
+.text {
+  margin: 0;
+}
+
+.textSmall {
+  @extend .text;
+  font-size: 0.8em;
+}
+
+.title {
+  @extend .text;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.thumbnail {
+  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.cardContent {
+  max-width: 100%;
+  height: auto;
+  padding: 16px;
+}

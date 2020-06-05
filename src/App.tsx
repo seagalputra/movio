@@ -20,9 +20,7 @@ const App: React.FC<{}> = () => {
           </div>
         }
       >
-        <div style={{ textAlign: 'center' }}>
-          <RenderRoutes routes={routes} />
-        </div>
+        <RenderRoutes routes={routes} />
       </Suspense>
     </div>
   )
