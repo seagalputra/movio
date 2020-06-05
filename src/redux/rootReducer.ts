@@ -1,8 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit'
-import counterReducer from './slices/counterSlice'
+import moviesReducer from './slices/moviesSlice'
 
 export const rootReducer = combineReducers({
-  counter: counterReducer,
+  movies: moviesReducer,
 })
 
 export type RootState = ReturnType<typeof rootReducer>
