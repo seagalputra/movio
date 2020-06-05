@@ -1,5 +1,4 @@
 import React, { Suspense } from 'react'
-import Spinner from 'react-spinkit'
 import Headroom from 'react-headroom'
 
 import routes from 'navigator/routes'
@@ -7,6 +6,7 @@ import RenderRoutes from 'navigator/RenderRoutes'
 import displayRouteMenu from 'navigator/displayRouteMenu'
 
 import NavigationBar from 'components/NavigationBar'
+import Spinner from 'components/Spinner'
 
 import styles from 'assets/styles/App.module.scss'
 
@@ -18,8 +18,8 @@ const App: React.FC<{}> = () => {
       </Headroom>
       <Suspense
         fallback={
-          <div style={{ textAlign: 'center', marginTop: '0.67em' }}>
-            <Spinner name="line-scale-pulse-out" />
+          <div style={{ marginTop: '0.67em' }}>
+            <Spinner />
           </div>
         }
       >

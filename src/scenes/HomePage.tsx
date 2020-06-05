@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import Header from 'components/Header'
+import Spinner from 'components/Spinner'
 import {
   MovieCard,
   CardContent,
@@ -20,6 +21,7 @@ import Movie from 'types/Movie'
 interface StateProps {
   popularMovies: Array<Movie>
   upcomingMovies: Array<Movie>
+  isLoading: boolean
 }
 
 interface DispatchProps {
@@ -28,8 +30,8 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps
 
-const HomePage: React.FC<Props> = (props) => {
-  const { fetchPopularMovies, popularMovies, upcomingMovies } = props
+export const HomePage: React.FC<Props> = (props) => {
+  const { fetchPopularMovies, popularMovies, upcomingMovies, isLoading } = props
 
   useEffect(() => {
     fetchPopularMovies()
@@ -39,43 +41,49 @@ const HomePage: React.FC<Props> = (props) => {
     <>
       <Header />
       <div className={styles.container}>
-        <MovieList title="Paling Populer">
-          {popularMovies?.map((movie: Movie) => {
-            const { id, poster_path, original_title, release_date } = movie
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            <MovieList title="Paling Populer">
+              {popularMovies?.map((movie: Movie) => {
+                const { id, poster_path, original_title, release_date } = movie
 
-            return (
-              <MovieCard key={id}>
-                <CardImage
-                  src={getPosterUrl(poster_path)}
-                  alt="Movie Thumbnail"
-                />
-                <CardContent>
-                  <CardTitle>{original_title}</CardTitle>
-                  <CardText>{release_date}</CardText>
-                </CardContent>
-              </MovieCard>
-            )
-          })}
-        </MovieList>
+                return (
+                  <MovieCard key={id}>
+                    <CardImage
+                      src={getPosterUrl(poster_path)}
+                      alt="Movie Thumbnail"
+                    />
+                    <CardContent>
+                      <CardTitle>{original_title}</CardTitle>
+                      <CardText>{release_date}</CardText>
+                    </CardContent>
+                  </MovieCard>
+                )
+              })}
+            </MovieList>
 
-        <MovieList title="Segera Tayang">
-          {upcomingMovies?.map((movie: Movie) => {
-            const { id, poster_path, original_title, release_date } = movie
+            <MovieList title="Segera Tayang">
+              {upcomingMovies?.map((movie: Movie) => {
+                const { id, poster_path, original_title, release_date } = movie
 
-            return (
-              <MovieCard key={id}>
-                <CardImage
-                  src={getPosterUrl(poster_path)}
-                  alt="Movie Thumbnail"
-                />
-                <CardContent>
-                  <CardTitle>{original_title}</CardTitle>
-                  <CardText>{release_date}</CardText>
-                </CardContent>
-              </MovieCard>
-            )
-          })}
-        </MovieList>
+                return (
+                  <MovieCard key={id}>
+                    <CardImage
+                      src={getPosterUrl(poster_path)}
+                      alt="Movie Thumbnail"
+                    />
+                    <CardContent>
+                      <CardTitle>{original_title}</CardTitle>
+                      <CardText>{release_date}</CardText>
+                    </CardContent>
+                  </MovieCard>
+                )
+              })}
+            </MovieList>
+          </>
+        )}
       </div>
     </>
   )
@@ -84,6 +92,7 @@ const HomePage: React.FC<Props> = (props) => {
 const mapStateToProps = (state: RootState) => ({
   popularMovies: state.movies.popularMovies,
   upcomingMovies: state.movies.upcomingMovies,
+  isLoading: state.loading,
 })
 
 const mapDispatchToProps = {
