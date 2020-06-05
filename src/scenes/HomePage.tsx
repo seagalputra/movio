@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Header from 'components/Header'
 import {
   MovieCard,
   CardContent,
@@ -7,96 +8,52 @@ import {
   CardTitle,
   CardText,
 } from 'components/MovieCard'
+import MovieList from 'components/MovieList'
 
 import styles from 'assets/styles/scenes/HomePage.module.scss'
 
+import movieData from 'data/movieData'
+
 const HomePage: React.FC<{}> = () => {
   return (
-    <div className={styles.container}>
-      <div className={styles.item}>
-        <MovieCard>
-          <CardImage
-            src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/wlfDxbGEsW58vGhFljKkcR5IxDj.jpg"
-            alt="Movie Thumbnail"
-          />
-          <CardContent>
-            <CardTitle>Extraction (2020)</CardTitle>
-            <CardText style={{ marginBottom: 6 }}>04/24/2020</CardText>
-            <CardText>Drama, Action, Thriller</CardText>
-          </CardContent>
-        </MovieCard>
-      </div>
+    <>
+      <Header />
+      <div className={styles.container}>
+        <MovieList title="Paling Populer">
+          {movieData?.map((movie, index) => {
+            const { thumbnail, title, date, genre } = movie
 
-      <div className={styles.item}>
-        <MovieCard>
-          <CardImage
-            src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/wlfDxbGEsW58vGhFljKkcR5IxDj.jpg"
-            alt="Movie Thumbnail"
-          />
-          <CardContent>
-            <CardTitle>Extraction (2020)</CardTitle>
-            <CardText style={{ marginBottom: 6 }}>04/24/2020</CardText>
-            <CardText>Drama, Action, Thriller</CardText>
-          </CardContent>
-        </MovieCard>
-      </div>
+            return (
+              <MovieCard key={`${title}-${index}`}>
+                <CardImage src={thumbnail} alt="Movie Thumbnail" />
+                <CardContent>
+                  <CardTitle>{title}</CardTitle>
+                  <CardText>{date}</CardText>
+                  <CardText>{genre}</CardText>
+                </CardContent>
+              </MovieCard>
+            )
+          })}
+        </MovieList>
 
-      <div className={styles.item}>
-        <MovieCard>
-          <CardImage
-            src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/wlfDxbGEsW58vGhFljKkcR5IxDj.jpg"
-            alt="Movie Thumbnail"
-          />
-          <CardContent>
-            <CardTitle>Extraction (2020)</CardTitle>
-            <CardText style={{ marginBottom: 6 }}>04/24/2020</CardText>
-            <CardText>Drama, Action, Thriller</CardText>
-          </CardContent>
-        </MovieCard>
-      </div>
+        <MovieList title="Segera Tayang">
+          {movieData?.map((movie, index) => {
+            const { thumbnail, title, date, genre } = movie
 
-      <div className={styles.item}>
-        <MovieCard>
-          <CardImage
-            src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/wlfDxbGEsW58vGhFljKkcR5IxDj.jpg"
-            alt="Movie Thumbnail"
-          />
-          <CardContent>
-            <CardTitle>Extraction (2020)</CardTitle>
-            <CardText style={{ marginBottom: 6 }}>04/24/2020</CardText>
-            <CardText>Drama, Action, Thriller</CardText>
-          </CardContent>
-        </MovieCard>
+            return (
+              <MovieCard key={`${title}-${index}`}>
+                <CardImage src={thumbnail} alt="Movie Thumbnail" />
+                <CardContent>
+                  <CardTitle>{title}</CardTitle>
+                  <CardText>{date}</CardText>
+                  <CardText>{genre}</CardText>
+                </CardContent>
+              </MovieCard>
+            )
+          })}
+        </MovieList>
       </div>
-
-      <div className={styles.item}>
-        <MovieCard>
-          <CardImage
-            src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/wlfDxbGEsW58vGhFljKkcR5IxDj.jpg"
-            alt="Movie Thumbnail"
-          />
-          <CardContent>
-            <CardTitle>Extraction (2020)</CardTitle>
-            <CardText style={{ marginBottom: 6 }}>04/24/2020</CardText>
-            <CardText>Drama, Action, Thriller</CardText>
-          </CardContent>
-        </MovieCard>
-      </div>
-
-      <div className={styles.item}>
-        <MovieCard>
-          <CardImage
-            src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/wlfDxbGEsW58vGhFljKkcR5IxDj.jpg"
-            alt="Movie Thumbnail"
-          />
-          <CardContent>
-            <CardTitle>Extraction (2020)</CardTitle>
-            <CardText style={{ marginBottom: 6 }}>04/24/2020</CardText>
-            <CardText>Drama, Action, Thriller</CardText>
-          </CardContent>
-        </MovieCard>
-      </div>
-    </div>
+    </>
   )
 }
 

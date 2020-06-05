@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames'
 
 import styles from 'assets/styles/components/MovieCard.module.scss'
 
@@ -6,7 +7,7 @@ const CardContent: React.FC<{ className?: string | undefined }> = (props) => {
   const { children, className } = props
 
   return (
-    <div className={`${styles.cardContent} ${className}`} {...props}>
+    <div className={classNames(styles.cardContent, className)} {...props}>
       {children}
     </div>
   )
@@ -23,7 +24,7 @@ const CardImage: React.FC<{
   return (
     <img
       {...props}
-      className={`${styles.thumbnail} ${className}`}
+      className={classNames(styles.thumbnail, className)}
       src={src}
       alt={alt}
       style={style}
@@ -38,7 +39,7 @@ const CardTitle: React.FC<{
   const { children, className, style } = props
 
   return (
-    <p className={`${styles.title} ${className}`} style={style} {...props}>
+    <p className={classNames(styles.title, className)} style={style} {...props}>
       {children}
     </p>
   )
@@ -51,7 +52,11 @@ const CardText: React.FC<{
   const { children, className, style } = props
 
   return (
-    <p className={`${styles.textSmall} ${className}`} style={style} {...props}>
+    <p
+      className={classNames(styles.textSmall, className)}
+      style={style}
+      {...props}
+    >
       {children}
     </p>
   )
@@ -61,7 +66,9 @@ const MovieCard: React.FC<{ className?: string | undefined }> = (props) => {
   const { className, children } = props
 
   return (
-    <div className={`${styles.cardContainer} ${className}`}>{children}</div>
+    <div className={classNames(styles.cardContainer, className)}>
+      {children}
+    </div>
   )
 }
 

@@ -1,0 +1,30 @@
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.listContainer > * {
+  box-sizing: border-box;
+  margin: 12px 12px 0 0;
+  width: calc(1 / 6 * 100% - (1 - 1 / 6) * 12px);
+}
+
+.listContainer > *:nth-child(6n) {
+  margin-right: 0;
+}
+
+.listContainer::after {
+  content: '';
+  flex: auto;
+}
+
+.listContainer > *:nth-child(-n + 6) {
+  margin-top: 0;
+}
