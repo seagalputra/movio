@@ -13,13 +13,13 @@ import MovieList from 'components/MovieList'
 
 import styles from 'assets/styles/scenes/HomePage.module.scss'
 
-import movieData from 'data/movieData'
 import getPosterUrl from 'apis/getPosterUrl'
 import { RootState } from 'redux/rootReducer'
 import Movie from 'types/Movie'
 
 interface StateProps {
   popularMovies: Array<Movie>
+  upcomingMovies: Array<Movie>
 }
 
 interface DispatchProps {
@@ -29,7 +29,7 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps
 
 const HomePage: React.FC<Props> = (props) => {
-  const { fetchPopularMovies, popularMovies } = props
+  const { fetchPopularMovies, popularMovies, upcomingMovies } = props
 
   useEffect(() => {
     fetchPopularMovies()
@@ -59,16 +59,18 @@ const HomePage: React.FC<Props> = (props) => {
         </MovieList>
 
         <MovieList title="Segera Tayang">
-          {movieData?.map((movie, index) => {
-            const { thumbnail, title, date, genre } = movie
+          {upcomingMovies?.map((movie: Movie) => {
+            const { id, poster_path, original_title, release_date } = movie
 
             return (
-              <MovieCard key={`${title}-${index}`}>
-                <CardImage src={thumbnail} alt="Movie Thumbnail" />
+              <MovieCard key={id}>
+                <CardImage
+                  src={getPosterUrl(poster_path)}
+                  alt="Movie Thumbnail"
+                />
                 <CardContent>
-                  <CardTitle>{title}</CardTitle>
-                  <CardText>{date}</CardText>
-                  <CardText>{genre}</CardText>
+                  <CardTitle>{original_title}</CardTitle>
+                  <CardText>{release_date}</CardText>
                 </CardContent>
               </MovieCard>
             )
@@ -81,10 +83,11 @@ const HomePage: React.FC<Props> = (props) => {
 
 const mapStateToProps = (state: RootState) => ({
   popularMovies: state.movies.popularMovies,
+  upcomingMovies: state.movies.upcomingMovies,
 })
 
 const mapDispatchToProps = {
-  fetchPopularMovies: () => ({ type: 'FETCH_POPULAR_MOVIES' }),
+  fetchPopularMovies: () => ({ type: 'FETCH_FEATURED_MOVIES' }),
 }
 
 export default React.memo(

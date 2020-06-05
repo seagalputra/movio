@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react'
 import Spinner from 'react-spinkit'
+import Headroom from 'react-headroom'
 
 import routes from 'navigator/routes'
 import RenderRoutes from 'navigator/RenderRoutes'
@@ -12,7 +13,9 @@ import styles from 'assets/styles/App.module.scss'
 const App: React.FC<{}> = () => {
   return (
     <div className={styles.container}>
-      <NavigationBar>{displayRouteMenu(routes)}</NavigationBar>
+      <Headroom>
+        <NavigationBar>{displayRouteMenu(routes)}</NavigationBar>
+      </Headroom>
       <Suspense
         fallback={
           <div style={{ textAlign: 'center', marginTop: '0.67em' }}>

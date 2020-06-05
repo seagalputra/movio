@@ -1,5 +1,5 @@
 {
-  "name": "redux-saga-example",
+  "name": "movio",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,6 +20,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-flexbox-grid": "^2.1.2",
+    "react-headroom": "^3.0.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
@@ -50,6 +51,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.10",
+    "@types/react-headroom": "^2.2.1",
     "@types/react-router-dom": "^5.1.5"
   }
 }

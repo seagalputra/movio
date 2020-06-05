@@ -8,4 +8,10 @@ const getPopularMovies = (): Promise<Object> => {
   return axios.get(url)
 }
 
-export default getPopularMovies
+const getUpcomingMovies = (): Promise<Object> => {
+  const url = getBaseUrl('/movie/upcoming')
+
+  return axios.get(url)
+}
+
+export { getPopularMovies, getUpcomingMovies }

@@ -4,6 +4,7 @@ const moviesSlice = createSlice({
   name: 'movies',
   initialState: {
     popularMovies: [],
+    upcomingMovies: [],
   },
   reducers: {
     obtainPopularMovies: (state, action) => {
@@ -15,9 +16,18 @@ const moviesSlice = createSlice({
 
       state.popularMovies = mostPopularMovies
     },
+    obtainUpcomingMovies: (state, action) => {
+      const { payload } = action
+
+      const upcomingMovies = payload?.filter(
+        (movie: Record<string, any>, index: number) => index < 6
+      )
+
+      state.upcomingMovies = upcomingMovies
+    },
   },
 })
 
-export const { obtainPopularMovies } = moviesSlice.actions
+export const { obtainPopularMovies, obtainUpcomingMovies } = moviesSlice.actions
 
 export default moviesSlice.reducer
