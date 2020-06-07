@@ -1,4 +1,35 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+type InitialState = {
+  popularMovies: Array<Record<string, any>>
+  upcomingMovies: Array<Record<string, any>>
+}
+
+const getPopularMovies = (
+  state: InitialState,
+  action: PayloadAction<Array<Record<string, any>>>
+) => {
+  const { payload } = action
+
+  const mostPopularMovies = payload?.filter(
+    (movie: Record<string, any>, index: number) => index < 6
+  )
+
+  state.popularMovies = mostPopularMovies
+}
+
+const getUpcomingMovies = (
+  state: InitialState,
+  action: PayloadAction<Array<Record<string, any>>>
+) => {
+  const { payload } = action
+
+  const upcomingMovies = payload?.filter(
+    (movie: Record<string, any>, index: number) => index < 6
+  )
+
+  state.upcomingMovies = upcomingMovies
+}
 
 const moviesSlice = createSlice({
   name: 'movies',
@@ -7,24 +38,8 @@ const moviesSlice = createSlice({
     upcomingMovies: [],
   },
   reducers: {
-    obtainPopularMovies: (state, action) => {
-      const { payload } = action
-
-      const mostPopularMovies = payload?.filter(
-        (movie: Record<string, any>, index: number) => index < 6
-      )
-
-      state.popularMovies = mostPopularMovies
-    },
-    obtainUpcomingMovies: (state, action) => {
-      const { payload } = action
-
-      const upcomingMovies = payload?.filter(
-        (movie: Record<string, any>, index: number) => index < 6
-      )
-
-      state.upcomingMovies = upcomingMovies
-    },
+    obtainPopularMovies: getPopularMovies,
+    obtainUpcomingMovies: getUpcomingMovies,
   },
 })
 
